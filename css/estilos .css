@@ -1,0 +1,186 @@
+/* Importação de uma fonte temática (opcional) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+/* Variáveis de Cores Temáticas de CDZ */
+:root {
+    --color-gold: #FFD700; /* Ouro */
+    --color-dark: #121212; /* Fundo Escuro */
+    --color-light-blue: #ADD8E6; /* Cosmo / Destaque */
+    --color-gray-bg: #222222; /* Fundo do menu */
+    --sidebar-width: 250px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cinzel', serif; /* Fonte temática */
+    background-color: var(--color-dark);
+    color: #f0f0f0;
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita a barra de rolagem horizontal desnecessária */
+}
+
+/* --- HEADER --- */
+#main-header {
+    background-color: var(--color-gold);
+    color: var(--color-dark);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#main-header h1 {
+    font-size: 1.5em;
+    margin-left: 15px;
+}
+
+/* --- BOTÃO DO MENU --- */
+#menu-toggle {
+    background: none;
+    border: none;
+    color: var(--color-dark);
+    font-size: 2em;
+    cursor: pointer;
+    padding: 0 10px;
+    line-height: 1;
+}
+
+/* --- MENU LATERAL (SIDEBAR) --- */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: calc(var(--sidebar-width) * -1); /* Esconde o menu para a esquerda */
+    width: var(--sidebar-width);
+    height: 100%;
+    background-color: var(--color-gray-bg);
+    padding-top: 60px; /* Espaço para o cabeçalho fixo */
+    transition: left 0.3s ease; /* Animação suave */
+    z-index: 999;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#sidebar.open {
+    left: 0; /* Move para a tela quando a classe 'open' é adicionada */
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid #444;
+    color: var(--color-gold);
+    text-align: center;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar ul li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #f0f0f0;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#sidebar ul li a:hover,
+#sidebar ul li a.active {
+    background-color: #333;
+    color: var(--color-light-blue);
+    border-left: 5px solid var(--color-gold); /* Destaque */
+}
+
+/* --- CONTEÚDO PRINCIPAL --- */
+#content {
+    padding: 80px 20px 20px 20px; /* Espaço para o cabeçalho */
+    transition: margin-left 0.3s ease;
+}
+
+/* Opcional: Empurra o conteúdo para o lado no desktop (não é o seu foco, mas é bom ter) */
+/* Remova ou ajuste esta regra se quiser o menu sempre sobreposto no desktop */
+@media (min-width: 768px) {
+    #sidebar {
+        /* Para telas maiores, deixe o menu sempre visível e empurre o conteúdo */
+        left: 0;
+        padding-top: 80px; /* Ajusta o padding para o header */
+    }
+    #content {
+        margin-left: var(--sidebar-width);
+    }
+    #menu-toggle {
+        display: none; /* Esconde o botão de hamburguer no desktop */
+    }
+}
+
+/* Estilo para as "abas" de conteúdo */
+.page-content {
+    display: none; /* Por padrão, todas as "abas" estão escondidas */
+}
+
+.page-content.active {
+    display: block; /* Apenas a "aba" ativa é exibida */
+}
+
+.rodape-personalizado {
+    /* Cor de fundo amarela */
+    background-color: #ffd700; /* Um tom de amarelo dourado */
+    
+    /* Cor do texto */
+    color: #333; /* Cinza escuro para melhor contraste */
+    
+    /* Centraliza o texto */
+    text-align: center;
+    
+    /* Espaçamento interno para criar o retângulo */
+    padding: 15px 0;
+    
+    /* Garante que ocupe a largura total */
+    width: 100%;
+    
+    /* Coloca no fundo da tela, opcional dependendo do layout */
+    /* position: fixed; */ 
+    /* bottom: 0; */
+    
+    /* Estilo da fonte */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+/* Opcional: Estilo para o coração */
+.rodape-personalizado .coracao {
+    color: red; /* Deixa o coração vermelho */
+}
+
+.imagem-topo {
+    /* Define a largura máxima da imagem.
+       Você pode ajustar o valor (ex: 300px, 50%) para o tamanho que desejar. */
+    max-width: 300px; /* Exemplo: a imagem terá no máximo 300 pixels de largura */
+    
+    /* Garante que a altura se ajuste proporcionalmente à largura,
+       para evitar distorção da imagem. */
+    height: auto; 
+    
+    /* Arredonda os cantos da imagem.
+       Quanto maior o valor (ex: 50%), mais arredondado ela ficará,
+       podendo se tornar um círculo ou oval. */
+    border-radius: 15px; /* Arredondamento suave de 15 pixels */
+    
+    /* Opcional: Adiciona uma pequena margem inferior para separar do conteúdo */
+    margin-bottom: 20px;
+    
+    /* Opcional: Para centralizar a imagem se ela não estiver dentro de um elemento que a centralize */
+    display: block; /* A imagem se comporta como um bloco */
+    margin-left: auto; /* Margem automática à esquerda */
+    margin-right: auto; /* Margem automática à direita */
+}
